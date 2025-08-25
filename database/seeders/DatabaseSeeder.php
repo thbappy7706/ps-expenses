@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
     {
         $user = User::factory()->create([
             'name' => 'Tanvir',
-            'email' => 'test@example',
+            'email' => 'admin@example.com',
             'password' => Hash::make('password'),
         ]);
 
         Event::dispatch(new Registered($user));
+
+        User::factory(200)->create();
 
 
     }

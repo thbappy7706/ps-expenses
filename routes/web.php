@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -12,6 +13,11 @@ Route::get('/', fn() => Redirect::route('dashboard'))->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/users', [UsersController::class, 'index'])->name('users.index');
+    Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+    Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
+    Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
 
     Route::resource('accounts', AccountController::class)->except(['show', 'create', 'edit']);
     Route::resource('categories', CategoryController::class)->except(['show', 'create', 'edit']);
