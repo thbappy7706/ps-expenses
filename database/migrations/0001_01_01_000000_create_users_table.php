@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('main_currency')->default('USD');
             $table->string('password');
+            $table->string('status')->default('active')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
