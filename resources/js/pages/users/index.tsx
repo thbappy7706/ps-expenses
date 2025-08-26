@@ -4,7 +4,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
 import { Form, Head, router, usePage } from '@inertiajs/react';
 import { EllipsisVertical, Pencil, Trash } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -45,12 +44,6 @@ interface UsersPageProps extends SharedProps {
     errors: Record<string, string>;
 }
 
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Users',
-        href: '/users',
-    },
-];
 
 function classNames(...c: (string | false | null | undefined)[]) {
     return c.filter(Boolean).join(' ');
@@ -138,7 +131,12 @@ export default function UsersIndex() {
     );
 
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <AppLayout
+            breadcrumbs={[
+                { title: 'Dashboard', href: '/dashboard' },
+                { title: 'Users', href: '/users' },
+            ]}
+        >
             <Head title="Users" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 {/* Header & actions */}

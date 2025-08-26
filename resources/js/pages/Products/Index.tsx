@@ -121,24 +121,28 @@ export default function Index({ products, filters }: Props) {
             <Head title="Products" />
 
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className="flex w-full items-center justify-between space-x-4">
-                    <div className="max-w-l mx-auto w-full sm:px-6 lg:px-8">
-                        {/* Filters */}
-                        <ProductFilter filters={filters} onFilterChange={handleFilterChange} />
-
-                        {/* Table */}
-                        <div className="space-y-6">
-                            <DataTable
-                                data={products}
-                                columns={columns}
-                                onSort={handleSort}
-                                sortColumn={filters.sort}
-                                sortDirection={filters.direction}
-                                onPageChange={handlePageChange}
-                                onPerPageChange={handlePerPageChange}
-                            />
-                        </div>
+                {/* Header */}
+                <div className="mb-4 flex items-center justify-between gap-3">
+                    <div>
+                        <h1 className="text-2xl font-semibold">Products</h1>
+                        <p className="text-sm text-[#706f6c] dark:text-[#A1A09A]">Manage products with realtime search and filters.</p>
                     </div>
+                </div>
+
+                {/* Filters */}
+                <ProductFilter filters={filters} onFilterChange={handleFilterChange} />
+
+                {/* Table */}
+                <div className="overflow-hidden rounded-lg bg-white shadow dark:bg-black">
+                    <DataTable
+                        data={products}
+                        columns={columns}
+                        onSort={handleSort}
+                        sortColumn={filters.sort}
+                        sortDirection={filters.direction}
+                        onPageChange={handlePageChange}
+                        onPerPageChange={handlePerPageChange}
+                    />
                 </div>
             </div>
         </AppLayout>

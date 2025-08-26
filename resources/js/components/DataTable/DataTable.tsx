@@ -31,8 +31,8 @@ export default function DataTable<T extends Record<string, unknown>>({
     onPerPageChange,
 }: Props<T>) {
     return (
-        <div className="w-full overflow-hidden rounded-lg bg-white shadow dark:bg-black">
-            <div className="w-full overflow-x-auto">
+        <div className=" overflow-hidden rounded-lg bg-white shadow dark:bg-black">
+            <div className="overflow-x-auto">
                 <table className="w-full min-w-full table-auto divide-y divide-gray-200 dark:divide-gray-700">
                     {/* Table Header */}
                     <DataTableHeader columns={columns} onSort={onSort} sortColumn={sortColumn} sortDirection={sortDirection} />
