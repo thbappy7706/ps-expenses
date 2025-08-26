@@ -1,11 +1,11 @@
 import React from 'react';
 import { Head, router } from '@inertiajs/react';
-import { PageProps } from '@/types';
+import { PageProps } from '@/types/index';
 import AppLayout from '@/layouts/app-layout';
 import DataTable from '@/components/DataTable/DataTable';
 import ProductFilter from '@/components/DataTable/ProductFilter';
 
-interface Product {
+interface Product extends Record<string, unknown> {
     id: number;
     name: string;
     description: string | null;
@@ -36,7 +36,7 @@ interface Props extends PageProps {
     };
 }
 
-export default function Index({ auth, products, filters }: Props) {
+export default function Index({ products, filters }: Props) {
     const columns = [
         {
             key: 'name',
@@ -63,7 +63,7 @@ export default function Index({ auth, products, filters }: Props) {
             label: 'Status',
             render: (product: Product) => (
                 <span
-                    className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 ${
+                    className={`inline-flex rounded-full px-2 text-xs leading-5 font-semibold ${
                         product.is_active
                             ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100'
                             : 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100'
@@ -77,8 +77,7 @@ export default function Index({ auth, products, filters }: Props) {
             key: 'created_at',
             label: 'Created At',
             sortable: true,
-            render: (product: Product) =>
-                new Date(product.created_at).toLocaleDateString(),
+            render: (product: Product) => new Date(product.created_at).toLocaleDateString(),
         },
     ];
 
@@ -89,12 +88,12 @@ export default function Index({ auth, products, filters }: Props) {
             {
                 preserveState: true,
                 preserveScroll: true,
-            }
+            },
         );
     };
 
-    const handleSort = (column: string, direction: 'asc' | 'desc'): void => {
-        handleFilterChange({ ...filters, sort: column, direction });
+    const handleSort = (column: keyof Product, direction: 'asc' | 'desc'): void => {
+        handleFilterChange({ ...filters, sort: String(column), direction });
     };
 
     const handlePageChange = (page: number): void => {
@@ -104,7 +103,7 @@ export default function Index({ auth, products, filters }: Props) {
             {
                 preserveState: true,
                 preserveScroll: true,
-            }
+            },
         );
     };
 
@@ -119,17 +118,13 @@ export default function Index({ auth, products, filters }: Props) {
                 { title: 'Products', href: '/products' },
             ]}
         >
-
             <Head title="Products" />
 
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className="flex items-center justify-between w-full space-x-4">
-                    <div className="mx-auto sm:px-6 lg:px-8 w-full">
+                <div className="flex w-full items-center justify-between space-x-4">
+                    <div className="max-w-l mx-auto w-full sm:px-6 lg:px-8">
                         {/* Filters */}
-                        <ProductFilter
-                            filters={filters}
-                            onFilterChange={handleFilterChange}
-                        />
+                        <ProductFilter filters={filters} onFilterChange={handleFilterChange} />
 
                         {/* Table */}
                         <div className="space-y-6">
@@ -146,8 +141,6 @@ export default function Index({ auth, products, filters }: Props) {
                     </div>
                 </div>
             </div>
-
-
         </AppLayout>
     );
 }

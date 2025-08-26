@@ -3,18 +3,22 @@ import { debounce } from "lodash";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 
-interface Props {
+// ProductFilter.tsx
+interface ProductFilterProps {
     filters: {
         search?: string;
         min_price?: number;
         max_price?: number;
         in_stock?: boolean;
         is_active?: boolean;
+        sort?: string;
+        direction?: 'asc' | 'desc';
+        per_page?: number;
     };
-    onFilterChange: (filters: unknown) => void;
+    onFilterChange: (filters: ProductFilterProps['filters']) => void;
 }
 
-export default function ProductFilter({ filters, onFilterChange }: Props) {
+export default function ProductFilter({ filters, onFilterChange }: ProductFilterProps) {
     const debouncedFilterChange = debounce(onFilterChange, 300);
 
     return (
