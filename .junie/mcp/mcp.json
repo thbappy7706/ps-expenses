@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/home/tanvir/.config/herd-lite/bin/php",
+            "args": [
+                "/home/tanvir/Projects/ps-expenses/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}
