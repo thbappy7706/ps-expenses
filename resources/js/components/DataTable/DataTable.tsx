@@ -32,15 +32,16 @@ export default function DataTable<T extends Record<string, unknown>>({
 }: Props<T>) {
     return (
         <div className=" overflow-hidden rounded-lg bg-white shadow dark:bg-black">
-            <div className="overflow-x-auto">
-                <table className="w-full min-w-full table-auto divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="overflow-x-auto rounded-md border border-[#e3e3e0] dark:border-[#3E3E3A]">
+
+            <table className="w-full min-w-full table-auto divide-y divide-gray-200 dark:divide-gray-700">
                     {/* Table Header */}
                     <DataTableHeader columns={columns} onSort={onSort} sortColumn={sortColumn} sortDirection={sortDirection} />
 
                     {/* Table Body */}
                     <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-black">
                         {data.data.map((item, rowIndex) => (
-                            <tr key={rowIndex} className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                            <tr key={rowIndex} className="hover:bg-gray-50 dark:hover:bg-gray-800 border-t border-[#e3e3e0] dark:border-[#3E3E3A]">
                                 {columns.map((column, colIndex) => (
                                     <td key={colIndex} className="px-6 py-4 text-sm whitespace-nowrap text-gray-900 dark:text-gray-200">
                                         {column.render ? column.render(item) : (item[column.key] as React.ReactNode)}

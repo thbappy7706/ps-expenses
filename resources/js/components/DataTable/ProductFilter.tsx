@@ -101,7 +101,7 @@ export default function ProductFilter({ filters, onFilterChange }: ProductFilter
                                 onCheckedChange={(checked) =>
                                     onFilterChange({
                                         ...filters,
-                                        in_stock: !!checked, // ✅ Fix
+                                        in_stock: checked ? true : undefined
                                     })
                                 }
                             />
@@ -121,7 +121,7 @@ export default function ProductFilter({ filters, onFilterChange }: ProductFilter
                                 onCheckedChange={(checked) =>
                                     onFilterChange({
                                         ...filters,
-                                        is_active: !!checked, // ✅ Fix
+                                        is_active: checked ? true : undefined
                                     })
                                 }
                             />

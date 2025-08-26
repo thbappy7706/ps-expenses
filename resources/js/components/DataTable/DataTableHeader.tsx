@@ -32,7 +32,7 @@ export default function DataTableHeader<T extends Record<string, unknown>>({ col
     };
 
     return (
-        <thead className="sticky top-0 z-10 bg-gray-50 dark:bg-black">
+        <thead className="sticky bg-[#f7f7f5] text-left text-[#706f6c] dark:bg-[#161615] dark:text-[#A1A09A]">
             <tr>
                 {columns.map((column, index) => (
                     <th

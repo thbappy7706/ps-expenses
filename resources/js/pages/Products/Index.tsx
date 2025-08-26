@@ -122,7 +122,7 @@ export default function Index({ products, filters }: Props) {
 
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 {/* Header */}
-                <div className="mb-4 flex items-center justify-between gap-3">
+                <div className="flex items-center justify-between gap-3">
                     <div>
                         <h1 className="text-2xl font-semibold">Products</h1>
                         <p className="text-sm text-[#706f6c] dark:text-[#A1A09A]">Manage products with realtime search and filters.</p>
