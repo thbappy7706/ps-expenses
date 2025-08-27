@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -49,5 +50,30 @@ class ProductController extends Controller
             'products' => $products,
             'filters' => $request->only(['search', 'min_price', 'max_price', 'in_stock', 'is_active', 'sort', 'direction', 'per_page']),
         ]);
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'is_active' => 'required|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator->errors());
+        }
+
+        $product->update($validator->validated());
+
+        return back()->with('success', 'Product updated successfully.');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return back()->with('success', 'Product deleted successfully.');
     }
 }

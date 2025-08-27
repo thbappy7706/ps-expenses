@@ -22,7 +22,7 @@ export default function ProductFilter({ filters, onFilterChange }: ProductFilter
     const debouncedFilterChange = debounce(onFilterChange, 300);
 
     return (
-        <div className="bg-white dark:bg-black p-4 rounded-lg shadow mb-4 space-y-4">
+        <div className="bg-white dark:bg-black p-4 rounded-lg shadow mb-1 space-y-2">
             <div className="flex flex-wrap gap-4">
                 {/* Search Input */}
                 <div className="flex-1 min-w-[200px]">

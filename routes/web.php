@@ -26,7 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('subscriptions', SubscriptionController::class)->except(['show', 'create', 'edit']);
     
-    Route::resource('products', ProductController::class)->only(['index']);
+    Route::resource('products', ProductController::class)->except(['create', 'edit', 'show']);
 });
 
 require __DIR__.'/settings.php';
