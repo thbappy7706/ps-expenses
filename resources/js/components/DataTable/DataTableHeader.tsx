@@ -38,11 +38,11 @@ export default function DataTableHeader<T extends Record<string, unknown>>({ col
                     <th
                         key={index}
                         onClick={() => handleSort(column)}
-                        className={`px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-600 uppercase dark:text-gray-300 ${
+                        className={`${column.label === 'Action' || column.label === 'Actions' ? 'px-4 py-2 text-right' : 'px-6 py-3 text-left'} text-xs font-medium tracking-wider text-gray-600 uppercase dark:text-gray-300 ${
                             column.sortable ? 'group cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800' : ''
                         }`}
                     >
-                        <div className="flex items-center space-x-1">
+                        <div className={`flex items-center space-x-1 ${column.label === 'Action' || column.label === 'Actions' ? 'justify-end' : ''}`}>
                             <span>{column.label}</span>
                             {getSortIcon(column)}
                         </div>

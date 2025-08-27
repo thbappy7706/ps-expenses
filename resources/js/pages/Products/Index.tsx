@@ -153,7 +153,7 @@ export default function Index({ products, filters }: Props) {
             key: 'actions',
             label:'Actions',
             render: (product: Product) => (
-                <div className="inline-flex">
+                <div className="flex justify-end">
                     <DropdownMenu>
                         <DropdownMenuTrigger>
                             <EllipsisVertical className="size-5 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100" />
